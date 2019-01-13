@@ -7,21 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3410851E21B6A49900B8A081 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410851D21B6A49900B8A081 /* TimerViewController.swift */; };
+		3420D4DC21AD6C52002E3FE1 /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D021AD6C50002E3FE1 /* fire.mp3 */; };
+		3420D4DD21AD6C52002E3FE1 /* thunderstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D121AD6C50002E3FE1 /* thunderstorm.mp3 */; };
+		3420D4DE21AD6C52002E3FE1 /* train.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D221AD6C50002E3FE1 /* train.mp3 */; };
+		3420D4DF21AD6C52002E3FE1 /* stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D321AD6C51002E3FE1 /* stream.mp3 */; };
+		3420D4E021AD6C52002E3FE1 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D421AD6C51002E3FE1 /* wind.mp3 */; };
+		3420D4E121AD6C52002E3FE1 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D521AD6C51002E3FE1 /* rain.mp3 */; };
+		3420D4E221AD6C52002E3FE1 /* waterdrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D621AD6C51002E3FE1 /* waterdrop.mp3 */; };
+		3420D4E321AD6C52002E3FE1 /* fan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D721AD6C51002E3FE1 /* fan.mp3 */; };
+		3420D4E421AD6C52002E3FE1 /* cafe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D821AD6C51002E3FE1 /* cafe.mp3 */; };
+		3420D4E521AD6C52002E3FE1 /* forest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4D921AD6C52002E3FE1 /* forest.mp3 */; };
+		3420D4E621AD6C52002E3FE1 /* night.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4DA21AD6C52002E3FE1 /* night.mp3 */; };
+		3420D4E721AD6C52002E3FE1 /* waves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3420D4DB21AD6C52002E3FE1 /* waves.mp3 */; };
+		34246F7321B547D900677EB0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34246F7221B547D900677EB0 /* RoundedButton.swift */; };
+		34246F7521B55D8700677EB0 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34246F7421B55D8700677EB0 /* CircleButton.swift */; };
 		3451739021A986CE00545A85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451738F21A986CE00545A85 /* AppDelegate.swift */; };
-		3451739221A986CE00545A85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451739121A986CE00545A85 /* ViewController.swift */; };
 		3451739521A986CE00545A85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3451739321A986CE00545A85 /* Main.storyboard */; };
 		3451739721A986D000545A85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3451739621A986D000545A85 /* Assets.xcassets */; };
 		3451739A21A986D000545A85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3451739821A986D000545A85 /* LaunchScreen.storyboard */; };
+		345173A221A9878600545A85 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345173A121A9878600545A85 /* HomeViewController.swift */; };
+		345173A521A98F5200545A85 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345173A421A98F5200545A85 /* AVFoundation.framework */; };
+		345173A821A997C100545A85 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345173A721A997C100545A85 /* CustomCollectionViewCell.swift */; };
+		A5180C8BCC011C27FA91FDF7 /* Pods_Relieve_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171DB792C18B68877F72413C /* Pods_Relieve_Test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171DB792C18B68877F72413C /* Pods_Relieve_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Relieve_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27BCB292EDB99A834B2310DF /* Pods-Relieve_Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Relieve_Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Relieve_Test/Pods-Relieve_Test.debug.xcconfig"; sourceTree = "<group>"; };
+		3410851D21B6A49900B8A081 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		3420D4D021AD6C50002E3FE1 /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
+		3420D4D121AD6C50002E3FE1 /* thunderstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunderstorm.mp3; sourceTree = "<group>"; };
+		3420D4D221AD6C50002E3FE1 /* train.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = train.mp3; sourceTree = "<group>"; };
+		3420D4D321AD6C51002E3FE1 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
+		3420D4D421AD6C51002E3FE1 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		3420D4D521AD6C51002E3FE1 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		3420D4D621AD6C51002E3FE1 /* waterdrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waterdrop.mp3; sourceTree = "<group>"; };
+		3420D4D721AD6C51002E3FE1 /* fan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fan.mp3; sourceTree = "<group>"; };
+		3420D4D821AD6C51002E3FE1 /* cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cafe.mp3; sourceTree = "<group>"; };
+		3420D4D921AD6C52002E3FE1 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
+		3420D4DA21AD6C52002E3FE1 /* night.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = night.mp3; sourceTree = "<group>"; };
+		3420D4DB21AD6C52002E3FE1 /* waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waves.mp3; sourceTree = "<group>"; };
+		34246F7221B547D900677EB0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		34246F7421B55D8700677EB0 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		3451738C21A986CE00545A85 /* Relieve_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Relieve_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3451738F21A986CE00545A85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3451739121A986CE00545A85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3451739421A986CE00545A85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3451739621A986D000545A85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3451739921A986D000545A85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3451739B21A986D000545A85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		345173A121A9878600545A85 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		345173A421A98F5200545A85 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		345173A721A997C100545A85 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		CF4F33B2674A8827DAB452B1 /* Pods-Relieve_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Relieve_Test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Relieve_Test/Pods-Relieve_Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345173A521A98F5200545A85 /* AVFoundation.framework in Frameworks */,
+				A5180C8BCC011C27FA91FDF7 /* Pods_Relieve_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				3451738E21A986CE00545A85 /* Relieve_Test */,
+				345173A621A990CC00545A85 /* Resources */,
 				3451738D21A986CE00545A85 /* Products */,
+				345173A321A98F5200545A85 /* Frameworks */,
+				52A86B34F391F95B03CCFAFD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +98,54 @@
 			isa = PBXGroup;
 			children = (
 				3451738F21A986CE00545A85 /* AppDelegate.swift */,
-				3451739121A986CE00545A85 /* ViewController.swift */,
+				345173A121A9878600545A85 /* HomeViewController.swift */,
+				3410851D21B6A49900B8A081 /* TimerViewController.swift */,
 				3451739321A986CE00545A85 /* Main.storyboard */,
+				345173A721A997C100545A85 /* CustomCollectionViewCell.swift */,
+				34246F7221B547D900677EB0 /* RoundedButton.swift */,
+				34246F7421B55D8700677EB0 /* CircleButton.swift */,
 				3451739621A986D000545A85 /* Assets.xcassets */,
 				3451739821A986D000545A85 /* LaunchScreen.storyboard */,
 				3451739B21A986D000545A85 /* Info.plist */,
 			);
 			path = Relieve_Test;
+			sourceTree = "<group>";
+		};
+		345173A321A98F5200545A85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				345173A421A98F5200545A85 /* AVFoundation.framework */,
+				171DB792C18B68877F72413C /* Pods_Relieve_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		345173A621A990CC00545A85 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3420D4D821AD6C51002E3FE1 /* cafe.mp3 */,
+				3420D4D721AD6C51002E3FE1 /* fan.mp3 */,
+				3420D4D021AD6C50002E3FE1 /* fire.mp3 */,
+				3420D4D921AD6C52002E3FE1 /* forest.mp3 */,
+				3420D4DA21AD6C52002E3FE1 /* night.mp3 */,
+				3420D4D521AD6C51002E3FE1 /* rain.mp3 */,
+				3420D4D321AD6C51002E3FE1 /* stream.mp3 */,
+				3420D4D121AD6C50002E3FE1 /* thunderstorm.mp3 */,
+				3420D4D221AD6C50002E3FE1 /* train.mp3 */,
+				3420D4D621AD6C51002E3FE1 /* waterdrop.mp3 */,
+				3420D4DB21AD6C52002E3FE1 /* waves.mp3 */,
+				3420D4D421AD6C51002E3FE1 /* wind.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52A86B34F391F95B03CCFAFD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27BCB292EDB99A834B2310DF /* Pods-Relieve_Test.debug.xcconfig */,
+				CF4F33B2674A8827DAB452B1 /* Pods-Relieve_Test.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3451739E21A986D000545A85 /* Build configuration list for PBXNativeTarget "Relieve_Test" */;
 			buildPhases = (
+				F3417C18F57D60F867B7FEBB /* [CP] Check Pods Manifest.lock */,
 				3451738821A986CE00545A85 /* Sources */,
 				3451738921A986CE00545A85 /* Frameworks */,
 				3451738A21A986CE00545A85 /* Resources */,
+				3F65254FA7B0DE02342C4A88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -121,21 +207,84 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3420D4E021AD6C52002E3FE1 /* wind.mp3 in Resources */,
+				3420D4DC21AD6C52002E3FE1 /* fire.mp3 in Resources */,
+				3420D4E721AD6C52002E3FE1 /* waves.mp3 in Resources */,
+				3420D4E121AD6C52002E3FE1 /* rain.mp3 in Resources */,
+				3420D4E621AD6C52002E3FE1 /* night.mp3 in Resources */,
+				3420D4E221AD6C52002E3FE1 /* waterdrop.mp3 in Resources */,
 				3451739A21A986D000545A85 /* LaunchScreen.storyboard in Resources */,
+				3420D4E421AD6C52002E3FE1 /* cafe.mp3 in Resources */,
+				3420D4DD21AD6C52002E3FE1 /* thunderstorm.mp3 in Resources */,
 				3451739721A986D000545A85 /* Assets.xcassets in Resources */,
 				3451739521A986CE00545A85 /* Main.storyboard in Resources */,
+				3420D4DE21AD6C52002E3FE1 /* train.mp3 in Resources */,
+				3420D4E321AD6C52002E3FE1 /* fan.mp3 in Resources */,
+				3420D4DF21AD6C52002E3FE1 /* stream.mp3 in Resources */,
+				3420D4E521AD6C52002E3FE1 /* forest.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F65254FA7B0DE02342C4A88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Relieve_Test/Pods-Relieve_Test-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Relieve_Test/Pods-Relieve_Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3417C18F57D60F867B7FEBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Relieve_Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3451738821A986CE00545A85 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3451739221A986CE00545A85 /* ViewController.swift in Sources */,
+				34246F7521B55D8700677EB0 /* CircleButton.swift in Sources */,
 				3451739021A986CE00545A85 /* AppDelegate.swift in Sources */,
+				345173A821A997C100545A85 /* CustomCollectionViewCell.swift in Sources */,
+				345173A221A9878600545A85 /* HomeViewController.swift in Sources */,
+				3410851E21B6A49900B8A081 /* TimerViewController.swift in Sources */,
+				34246F7321B547D900677EB0 /* RoundedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +428,7 @@
 		};
 		3451739F21A986D000545A85 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BCB292EDB99A834B2310DF /* Pods-Relieve_Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +446,7 @@
 		};
 		345173A021A986D000545A85 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF4F33B2674A8827DAB452B1 /* Pods-Relieve_Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
