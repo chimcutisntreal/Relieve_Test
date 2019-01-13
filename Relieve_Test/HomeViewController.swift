@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnSetTimer: RoundedButton!
+    @IBOutlet weak var showTimer: UILabel!
     
 
     var audioPlayerArray = [AVAudioPlayer]()
@@ -34,10 +35,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
         collectionView.reloadData()
         collectionView.allowsMultipleSelection = true;
-        
         setGradient()
-      
-  
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -98,8 +97,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         print(audioPlayerArray)
     }
+    
+    
     @IBAction func pressOnTimer(_ sender: Any) {
         let Timer = storyboard?.instantiateViewController(withIdentifier: "Timer") as! TimerViewController
+  
         self.present(Timer, animated: true, completion: nil)
     }
     @IBAction func pressOnFavorites(_ sender: Any) {
@@ -107,6 +109,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBAction func pressOnRandom(_ sender: Any) {
     }
+    
 }
 
 extension UIViewController {

@@ -155,7 +155,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkS-4G-0Y0" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkS-4G-0Y0" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
                                 <rect key="frame" x="22" y="173.33333333333334" width="331" height="90.000000000000028"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="NW8-7m-xrc"/>

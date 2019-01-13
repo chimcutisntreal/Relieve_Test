@@ -24,13 +24,20 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var homeButton: RoundedButton!
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        if isTimerRunning == false {
+//            countDownButton.setTitle("Tap here to set timer", for: .normal)
+//        } else {
+//            countDownButton.setTitle(timeString(time: TimeInterval(seconds)), for: .normal)
+//        }
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setGradient()
         disableButton(button: startButton)
         disableButton(button: pauseButton)
         countDownButton.setTitle("Tap here to set timer", for: .normal)
-        
+        countDownButton.contentVerticalAlignment = .fill
     }
 
     func disableButton(button: UIButton) {
@@ -68,7 +75,7 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
             startButton.setTitle("Cancel", for: .normal)
             enableButton(button: pauseButton)
             self.cancelTapped = true
-            
+        
         } else {
             timer.invalidate()
             countDownButton.setTitle("Tap here to set timer", for: .normal)
@@ -104,18 +111,22 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
     
     
     
-    @objc func updateTimer() {
+    @objc func updateTimer(getTimer : String) {
         if seconds == 0 {
             timer.invalidate()
             let alert = UIAlertController(title: "Time's Up", message: nil, preferredStyle: .alert)
-            
+
             let OK = UIAlertAction(title: "Got it!", style: .default, handler: nil)
             alert.addAction(OK)
             self.present(alert, animated: true, completion: nil)
+            disableButton(button: pauseButton)
+            startButton.setTitle("Start", for: .normal)
+            self.cancelTapped = false
         } else {
             seconds -= 1
             countDownButton.setTitle(timeString(time: TimeInterval(seconds)), for: .normal)
-            
+            countDownButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
         }
     }
     
@@ -176,9 +187,9 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return String(format: "%02i hours ",row)
+            return String(format: "%02i hour ",row)
         } else {
-            return String(format: "%02i minutes ",row)
+            return String(format: "%02i minute ",row)
         }
         
     }
@@ -200,14 +211,26 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
         self.seconds = ((hour ?? 0)*3600)+((minute ?? 0)*60)
         self.countDownButton.setTitle(self.timeString(time: TimeInterval(self.seconds)), for: .normal)
         self.countDownButton.titleLabel?.font = UIFont(name: "Rockwell", size: 40)
+        countDownButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
     
     @objc func doneClick() {
-        enableButton(button: startButton)
-        homeButton.isEnabled = true
-        
-        self.fullView.removeFromSuperview()
-        self.pauseButton.isEnabled = false
+        if countDownButton.titleLabel?.text == "00:00:00" {
+            disableButton(button: startButton)
+            countDownButton.setTitle("Tap here to set timer", for: .normal)
+            homeButton.isEnabled = true
+            self.fullView.removeFromSuperview()
+        } else if countDownButton.titleLabel?.text == "Tap here to set timer" {
+            disableButton(button: startButton)
+            homeButton.isEnabled = true
+            self.fullView.removeFromSuperview()
+            
+        } else {
+            enableButton(button: startButton)
+            self.pauseButton.isEnabled = false
+            homeButton.isEnabled = true
+            self.fullView.removeFromSuperview()
+        }
     }
     @objc func cancelClick() {
         countDownButton.setTitle("Tap here to set timer", for: .normal)
@@ -215,6 +238,8 @@ class TimerViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDa
         disableButton(button: pauseButton)
         self.fullView.removeFromSuperview()
     }
+    
+
 
 }
 
