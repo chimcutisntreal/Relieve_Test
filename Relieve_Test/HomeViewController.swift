@@ -9,13 +9,13 @@ import UIKit
 import AVFoundation
 import Pastel
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnSetTimer: RoundedButton!
-    @IBOutlet weak var showTimer: UILabel!
-    
 
+    
+    var fullView = UIView()
     var audioPlayerArray = [AVAudioPlayer]()
     var audioPlayer : AVAudioPlayer!
     var selectedArray = [String]()
@@ -28,14 +28,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UIImage(named: "stream")!, UIImage(named: "thunderstorm")!, UIImage(named: "train")!,
         UIImage(named: "waterdrop")!, UIImage(named: "waves")!, UIImage(named: "wind")!,
     ]
-    var arrSlider = [UISlider]()
-    
+    var valueOfSlider : UILabel!
+    var timerSlider : UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
     
         collectionView.reloadData()
         collectionView.allowsMultipleSelection = true;
         setGradient()
+        
         
     }
     
@@ -100,15 +101,126 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func pressOnTimer(_ sender: Any) {
-        let Timer = storyboard?.instantiateViewController(withIdentifier: "Timer") as! TimerViewController
-  
-        self.present(Timer, animated: true, completion: nil)
+//        let Timer = storyboard?.instantiateViewController(withIdentifier: "Timer") as! TimerViewController
+//
+//        self.present(Timer, animated: true, completion: nil)
+        let timerAlert = UIAlertController(title: "Timer", message: "\n\n\n", preferredStyle: .actionSheet)
+        timerAlert.view.backgroundColor = UIColor(red: 237/255, green: 239/255, blue: 242/255, alpha: 0.1)
+        timerAlert.view.layer.cornerRadius = timerAlert.view.frame.width/2
+        timerAlert.view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+        timerAlert.view.layer.borderWidth = 1/UIScreen.main.nativeScale
+        
+        
+        
+        let btnTimerDone = UIAlertAction(title: "Set Timer", style: .default, handler: pressOnTimerDone)
+        timerAlert.addAction(btnTimerDone)
+        
+        timerSlider = UISlider(frame: CGRect(x: 34, y: 45, width: 280, height: 50))
+        timerSlider.minimumValue = 0
+        timerSlider.maximumValue = 120
+        timerSlider.setThumbImage(UIImage(named: "timer"), for: .normal)
+        timerSlider.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        timerSlider.addTarget(self, action: #selector(sliderInAction(sender:)), for: .valueChanged)
+        timerSlider.isContinuous = true
+        timerSlider.value = 60
+        timerAlert.view.addSubview(timerSlider)
+        
+        let leftValue = UILabel(frame: CGRect(x: 10, y: 45, width: 20, height: 50))
+        leftValue.text = "0"
+        leftValue.font = UIFont.boldSystemFont(ofSize: 20)
+        leftValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        timerAlert.view.addSubview(leftValue)
+        
+        let rightValue = UILabel(frame: CGRect(x: 316, y: 45, width: 40, height: 50))
+        rightValue.text = "120"
+        rightValue.font = UIFont.boldSystemFont(ofSize: 20)
+        rightValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        timerAlert.view.addSubview(rightValue)
+        
+        self.present(timerAlert, animated: true) {
+            let tapOutside = UITapGestureRecognizer(target: self, action: #selector(self.dismissTimerAlert))
+            timerAlert.view.superview?.subviews[0].addGestureRecognizer(tapOutside)
+        }
+        
+        valueOfSlider = UILabel(frame: CGRect(x: 0, y: 75, width: 350, height: 50))
+        valueOfSlider.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        valueOfSlider.textAlignment = .center
+        valueOfSlider.font = UIFont.boldSystemFont(ofSize: 20)
+        timerAlert.view.addSubview(valueOfSlider)
+        valueOfSlider.text = "60"
+        
+        
+//        let btnTimerDone = UIButton(frame: CGRect(x: 0, y: 110, width: 360, height: 50))
+//        btnTimerDone.layer.borderWidth = 1/UIScreen.main.nativeScale
+//        btnTimerDone.contentEdgeInsets = UIEdgeInsets(top: 3.5, left: 43, bottom: 3.5, right: 43)
+//        btnTimerDone.titleLabel?.adjustsFontSizeToFitWidth = true
+//        btnTimerDone.titleLabel?.adjustsFontForContentSizeCategory = true
+//        btnTimerDone.backgroundColor = .black
+//        btnTimerDone.layer.cornerRadius = 25
+//        btnTimerDone.layer.borderColor = UIColor(red: 237/255, green: 239/255, blue: 242/255, alpha: 1).cgColor
+//        btnTimerDone.setTitle("Set Timer", for: .normal)
+//        timerAlert.view.addSubview(btnTimerDone)
+        
     }
     @IBAction func pressOnFavorites(_ sender: Any) {
     }
     
     @IBAction func pressOnRandom(_ sender: Any) {
     }
+    
+    @objc func sliderInAction(sender: UISlider){
+        valueOfSlider.text = String(Int(sender.value))
+    }
+    
+    @objc func dismissTimerAlert() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func pressOnTimerDone(timerAlert:UIAlertAction!){
+        print(valueOfSlider.text!)
+    }
+//    func timePicker(){
+//        fullView = UIView(frame: CGRect(x: 0, y: view.frame.height-150, width: view.frame.width, height: 260))
+//        fullView.backgroundColor = .white
+//        //ToolBar
+//        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: fullView.frame.width, height: 40))
+//
+//        toolBar.isTranslucent = true
+//        toolBar.tintColor = UIColor.black
+//        toolBar.sizeToFit()
+//
+//        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneClick))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+////        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
+//        toolBar.items = [spaceButton,doneButton]
+//        toolBar.isUserInteractionEnabled = true
+//        fullView.addSubview(toolBar)
+//
+//        let timerSlider = UISlider(frame: CGRect(x: 0, y: 0, width: fullView.frame.width, height: 20))
+//        timerSlider.minimumValue = 0
+//        timerSlider.maximumValue = 100
+//        timerSlider.isContinuous = true
+//        timerSlider.tintColor = UIColor.green
+//
+////        timerSlider.backgroundColor = UIColor(red: 79/255, green: 122/255, blue: 98/255, alpha: 0.5)
+////        timePicker.tintColor = .white
+////        fullView.addSubview(timerSlider)
+//        fullView.addSubview(timerSlider)
+//        self.view.addSubview(fullView)
+//    }
+//
+//    @objc func doneClick(){
+//        self.fullView.removeFromSuperview()
+//    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let touch = touches.first
+//        if touch?.view == self.view {
+//            print("outside")
+//        } else {
+//            print("inside")
+//        }
+//    }
+
     
 }
 
@@ -132,4 +244,13 @@ extension UIViewController {
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
     }
+}
+class CustomSlider: UISlider {
+    
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        let customBounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width, height: 5.0))
+        super.trackRect(forBounds: customBounds)
+        return customBounds
+    }
+    
 }
