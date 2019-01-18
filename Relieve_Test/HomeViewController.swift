@@ -30,13 +30,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     ]
     var valueOfSlider : UILabel!
     var timerSlider : UISlider!
+    var timer = Timer()
+    var isRunning = false
+    var countTimer : Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         collectionView.reloadData()
         collectionView.allowsMultipleSelection = true;
         setGradient()
-        
         
     }
     
@@ -57,8 +60,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if  imageItems[indexPath.row] == UIImage(named: items[indexPath.row])! {
             imageItems[indexPath.row] = UIImage(named: items[indexPath.row]+"_onclick")!
             playSound(soundName: selectedItem)
-            print("selected "+selectedItem)
-            print(indexPath.row)
+//            print("selected "+selectedItem)
+//            print(indexPath.row)
             selectedArray.append(items[indexPath.row])
             
             
@@ -72,11 +75,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 selectedArray.remove(at: currentIndex)
                 
             }
-            print("deselected "+selectedItem)
         }
         
-        //        print(audioPlayerArray)
-        //        print(selectedArray)
+//                print(audioPlayerArray)
+                print(selectedArray)
         collectionView.reloadData()
     }
     
@@ -101,55 +103,54 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func pressOnTimer(_ sender: Any) {
-//        let Timer = storyboard?.instantiateViewController(withIdentifier: "Timer") as! TimerViewController
-//
-//        self.present(Timer, animated: true, completion: nil)
-        let timerAlert = UIAlertController(title: "Timer", message: "\n\n\n", preferredStyle: .actionSheet)
-        timerAlert.view.backgroundColor = UIColor(red: 237/255, green: 239/255, blue: 242/255, alpha: 0.1)
-        timerAlert.view.layer.cornerRadius = timerAlert.view.frame.width/2
-        timerAlert.view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-        timerAlert.view.layer.borderWidth = 1/UIScreen.main.nativeScale
-        
-        
-        
-        let btnTimerDone = UIAlertAction(title: "Set Timer", style: .default, handler: pressOnTimerDone)
-        timerAlert.addAction(btnTimerDone)
-        
-        timerSlider = UISlider(frame: CGRect(x: 34, y: 45, width: 280, height: 50))
-        timerSlider.minimumValue = 0
-        timerSlider.maximumValue = 120
-        timerSlider.setThumbImage(UIImage(named: "timer"), for: .normal)
-        timerSlider.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        timerSlider.addTarget(self, action: #selector(sliderInAction(sender:)), for: .valueChanged)
-        timerSlider.isContinuous = true
-        timerSlider.value = 60
-        timerAlert.view.addSubview(timerSlider)
-        
-        let leftValue = UILabel(frame: CGRect(x: 10, y: 45, width: 20, height: 50))
-        leftValue.text = "0"
-        leftValue.font = UIFont.boldSystemFont(ofSize: 20)
-        leftValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        timerAlert.view.addSubview(leftValue)
-        
-        let rightValue = UILabel(frame: CGRect(x: 316, y: 45, width: 40, height: 50))
-        rightValue.text = "120"
-        rightValue.font = UIFont.boldSystemFont(ofSize: 20)
-        rightValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        timerAlert.view.addSubview(rightValue)
-        
-        self.present(timerAlert, animated: true) {
-            let tapOutside = UITapGestureRecognizer(target: self, action: #selector(self.dismissTimerAlert))
-            timerAlert.view.superview?.subviews[0].addGestureRecognizer(tapOutside)
+        if isRunning == true {
+            timer.invalidate()
+            btnSetTimer.setTitle("Set Timer", for: .normal)
+            isRunning = false
+        } else {
+            let timerAlert = UIAlertController(title: "Timer", message: "\n\n\n", preferredStyle: .actionSheet)
+            timerAlert.view.backgroundColor = UIColor(red: 237/255, green: 239/255, blue: 242/255, alpha: 0.1)
+            timerAlert.view.layer.cornerRadius = timerAlert.view.frame.width/2
+            timerAlert.view.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+            timerAlert.view.layer.borderWidth = 1/UIScreen.main.nativeScale
+            
+            let btnTimerDone = UIAlertAction(title: "Set Timer", style: .default, handler: pressOnTimerDone)
+            timerAlert.addAction(btnTimerDone)
+            
+            timerSlider = UISlider(frame: CGRect(x: 34, y: 45, width: 280, height: 50))
+            timerSlider.minimumValue = 0
+            timerSlider.maximumValue = 120
+            timerSlider.setThumbImage(UIImage(named: "timer"), for: .normal)
+            timerSlider.tintColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            timerSlider.addTarget(self, action: #selector(sliderInAction(sender:)), for: .valueChanged)
+            timerSlider.isContinuous = true
+            timerSlider.value = 60
+            timerAlert.view.addSubview(timerSlider)
+            
+            let leftValue = UILabel(frame: CGRect(x: 10, y: 45, width: 20, height: 50))
+            leftValue.text = "0"
+            leftValue.font = UIFont.boldSystemFont(ofSize: 20)
+            leftValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            timerAlert.view.addSubview(leftValue)
+            
+            let rightValue = UILabel(frame: CGRect(x: 316, y: 45, width: 40, height: 50))
+            rightValue.text = "120"
+            rightValue.font = UIFont.boldSystemFont(ofSize: 20)
+            rightValue.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            timerAlert.view.addSubview(rightValue)
+            
+            self.present(timerAlert, animated: true) {
+                let tapOutside = UITapGestureRecognizer(target: self, action: #selector(self.dismissTimerAlert))
+                timerAlert.view.superview?.subviews[0].addGestureRecognizer(tapOutside)
+            }
+            
+            valueOfSlider = UILabel(frame: CGRect(x: 0, y: 75, width: 350, height: 50))
+            valueOfSlider.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+            valueOfSlider.textAlignment = .center
+            valueOfSlider.font = UIFont.boldSystemFont(ofSize: 20)
+            timerAlert.view.addSubview(valueOfSlider)
+            valueOfSlider.text = "60"
         }
-        
-        valueOfSlider = UILabel(frame: CGRect(x: 0, y: 75, width: 350, height: 50))
-        valueOfSlider.textColor = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-        valueOfSlider.textAlignment = .center
-        valueOfSlider.font = UIFont.boldSystemFont(ofSize: 20)
-        timerAlert.view.addSubview(valueOfSlider)
-        valueOfSlider.text = "60"
-        
-        
 //        let btnTimerDone = UIButton(frame: CGRect(x: 0, y: 110, width: 360, height: 50))
 //        btnTimerDone.layer.borderWidth = 1/UIScreen.main.nativeScale
 //        btnTimerDone.contentEdgeInsets = UIEdgeInsets(top: 3.5, left: 43, bottom: 3.5, right: 43)
@@ -177,51 +178,47 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func pressOnTimerDone(timerAlert:UIAlertAction!){
+        countTimer = Int(valueOfSlider.text!)!
+        if countTimer > 0 {
+            if countTimer == 1 {
+                btnSetTimer.setTitle("Turn off sound after \(countTimer!) minute", for: .normal)
+            } else {
+                btnSetTimer.setTitle("Turn off sound after \(countTimer!) minutes", for: .normal)
+            }
+            
+            
+            timerRunning()
+            
+        }
         print(valueOfSlider.text!)
+        
+        
+        
     }
-//    func timePicker(){
-//        fullView = UIView(frame: CGRect(x: 0, y: view.frame.height-150, width: view.frame.width, height: 260))
-//        fullView.backgroundColor = .white
-//        //ToolBar
-//        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: fullView.frame.width, height: 40))
-//
-//        toolBar.isTranslucent = true
-//        toolBar.tintColor = UIColor.black
-//        toolBar.sizeToFit()
-//
-//        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneClick))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-////        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
-//        toolBar.items = [spaceButton,doneButton]
-//        toolBar.isUserInteractionEnabled = true
-//        fullView.addSubview(toolBar)
-//
-//        let timerSlider = UISlider(frame: CGRect(x: 0, y: 0, width: fullView.frame.width, height: 20))
-//        timerSlider.minimumValue = 0
-//        timerSlider.maximumValue = 100
-//        timerSlider.isContinuous = true
-//        timerSlider.tintColor = UIColor.green
-//
-////        timerSlider.backgroundColor = UIColor(red: 79/255, green: 122/255, blue: 98/255, alpha: 0.5)
-////        timePicker.tintColor = .white
-////        fullView.addSubview(timerSlider)
-//        fullView.addSubview(timerSlider)
-//        self.view.addSubview(fullView)
-//    }
-//
-//    @objc func doneClick(){
-//        self.fullView.removeFromSuperview()
-//    }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first
-//        if touch?.view == self.view {
-//            print("outside")
-//        } else {
-//            print("inside")
-//        }
-//    }
-
     
+    func timerRunning(){
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        isRunning = true
+    }
+    
+    @objc func updateTimer(){
+        countTimer -= 1
+        if countTimer == 0 {
+            timer.invalidate()
+            audioPlayerArray.forEach{ audioPlaying in
+                audioPlaying.stop()
+            }
+            btnSetTimer.setTitle("Set Timer", for: .normal)
+            isRunning = false
+        } else if countTimer == 1 {
+            btnSetTimer.setTitle("Turn off sound after \(countTimer!) minute", for: .normal)
+        } else {
+            btnSetTimer.setTitle("Turn off sound after \(countTimer!) minutes", for: .normal)
+        }
+        
+        print(countTimer!)
+        
+    }
 }
 
 extension UIViewController {
