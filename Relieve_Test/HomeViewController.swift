@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var audioPlayerArray = [AVAudioPlayer]()
     var audioPlayer : AVAudioPlayer!
     var selectedArray = [String]()
+    var selectedIndex = [Int]()
     let items = [ "cafe", "fan", "fire", "forest",
                   "night", "rain", "stream", "thunderstorm",
                   "train", "waterdrop", "waves", "wind", ]
@@ -33,14 +34,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var timer = Timer()
     var isRunning = false
     var countTimer : Int!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         collectionView.reloadData()
         collectionView.allowsMultipleSelection = true;
+        btnSetTimer.isEnabled = false
         setGradient()
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,7 +63,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //            print("selected "+selectedItem)
 //            print(indexPath.row)
             selectedArray.append(items[indexPath.row])
-            
+            selectedIndex.append(indexPath.row)
+//            print("select \(selectedIndex)")
             
         } else {
             imageItems[indexPath.row] = UIImage(named: items[indexPath.row])!
@@ -73,12 +74,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 audioPlayerArray[currentIndex].stop()
                 audioPlayerArray.remove(at: currentIndex)
                 selectedArray.remove(at: currentIndex)
-                
+                selectedIndex.remove(at: currentIndex)
+//                print("deselect \(selectedIndex)")
             }
         }
+        if selectedArray == [] {
+            btnSetTimer.isEnabled = false
+        } else {
+            btnSetTimer.isEnabled = true
+        }
         
-//                print(audioPlayerArray)
-                print(selectedArray)
+        
+        print(selectedArray)
         collectionView.reloadData()
     }
     
@@ -186,9 +193,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 btnSetTimer.setTitle("Turn off sound after \(countTimer!) minutes", for: .normal)
             }
             
-            
+//            let deadlineTime = DispatchTime.now() + .seconds(countTimer!)
+//            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+//                self.turnOff()
+//            }
             timerRunning()
-            
+
+
         }
         print(valueOfSlider.text!)
         
@@ -203,12 +214,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @objc func updateTimer(){
         countTimer -= 1
-        if countTimer == 0 {
+        if countTimer == 0{
             timer.invalidate()
-            audioPlayerArray.forEach{ audioPlaying in
-                audioPlaying.stop()
-            }
-            btnSetTimer.setTitle("Set Timer", for: .normal)
+            self.turnOff()
             isRunning = false
         } else if countTimer == 1 {
             btnSetTimer.setTitle("Turn off sound after \(countTimer!) minute", for: .normal)
@@ -218,6 +226,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         print(countTimer!)
         
+    }
+    
+    func turnOff(){
+        audioPlayerArray.forEach{ audioPlaying in
+            audioPlaying.stop()
+        }
+        
+        selectedIndex.forEach{ indexItem in
+            imageItems[indexItem] = UIImage(named: items[indexItem])!
+        }
+        selectedIndex.removeAll()
+        selectedArray.removeAll()
+        audioPlayerArray.removeAll()
+        collectionView.reloadData()
+        btnSetTimer.setTitle("Set Timer", for: .normal)
     }
 }
 
