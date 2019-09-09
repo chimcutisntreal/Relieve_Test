@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,15 +14,12 @@
             <objects>
                 <viewController storyboardIdentifier="Home" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Relieve_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fGt-hw-Cj6">
-                                <rect key="frame" x="0.0" y="246" width="375" height="532"/>
+                                <rect key="frame" x="0.0" y="222" width="414" height="514"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="532" id="7yw-vB-KbO"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BHU-nc-ZYh">
                                     <size key="itemSize" width="162" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -74,63 +71,45 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V7S-mh-emY">
-                                <rect key="frame" x="22" y="68" width="331" height="90"/>
+                                <rect key="frame" x="22" y="44" width="370" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbJ-iw-StW" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="331" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="LAZ-R0-zjl"/>
+                                            <constraint firstAttribute="height" constant="45" id="pEX-2M-sFh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="20"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Set Timer"/>
                                         <connections>
                                             <action selector="pressOnTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zBB-dh-C9S"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkH-V0-9Ee" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="331" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEZ-sc-PeR" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55" width="370" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="sc0-3a-2yu"/>
+                                            <constraint firstAttribute="height" constant="45" id="v7D-ds-znj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Favorites"/>
+                                        <state key="normal" title="Random"/>
                                         <connections>
-                                            <action selector="pressOnFavorites:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icQ-R9-6yT"/>
+                                            <action selector="pressOnRandom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0f6-b6-kWl"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="QbJ-iw-StW" secondAttribute="trailing" id="2eL-FM-zKA"/>
-                                    <constraint firstItem="rkH-V0-9Ee" firstAttribute="top" secondItem="QbJ-iw-StW" secondAttribute="bottom" constant="10" id="Fyo-0E-bQs"/>
-                                    <constraint firstItem="QbJ-iw-StW" firstAttribute="leading" secondItem="V7S-mh-emY" secondAttribute="leading" id="IUK-mW-hZq"/>
-                                    <constraint firstAttribute="trailing" secondItem="rkH-V0-9Ee" secondAttribute="trailing" id="QYn-w0-VEO"/>
-                                    <constraint firstAttribute="height" constant="90" id="Yiv-4t-rmi"/>
-                                    <constraint firstAttribute="bottom" secondItem="rkH-V0-9Ee" secondAttribute="bottom" id="bPd-HF-83K"/>
-                                    <constraint firstItem="rkH-V0-9Ee" firstAttribute="leading" secondItem="V7S-mh-emY" secondAttribute="leading" id="emg-B1-JDx"/>
-                                    <constraint firstItem="QbJ-iw-StW" firstAttribute="top" secondItem="V7S-mh-emY" secondAttribute="top" id="vxW-7e-Yo2"/>
+                                    <constraint firstAttribute="height" constant="100" id="bL5-MP-NL9"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEZ-sc-PeR" customClass="CircleButton" customModule="Relieve_Test" customModuleProvider="target">
-                                <rect key="frame" x="152.66666666666666" y="168" width="70" height="70"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Random"/>
-                                <connections>
-                                    <action selector="pressOnRandom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0f6-b6-kWl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="V7S-mh-emY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="BbJ-b9-3bB"/>
                             <constraint firstItem="V7S-mh-emY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="ILh-3D-th0"/>
-                            <constraint firstItem="pEZ-sc-PeR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="152.66999999999999" id="QOW-G2-at7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fGt-hw-Cj6" secondAttribute="trailing" id="Z1H-xA-eKd"/>
-                            <constraint firstItem="pEZ-sc-PeR" firstAttribute="top" secondItem="V7S-mh-emY" secondAttribute="bottom" constant="10" id="fHX-Kn-Rtm"/>
-                            <constraint firstItem="fGt-hw-Cj6" firstAttribute="top" secondItem="pEZ-sc-PeR" secondAttribute="bottom" constant="8" id="tHO-sV-Uw3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pEZ-sc-PeR" secondAttribute="trailing" constant="152.33000000000001" id="vYn-Ry-rP3"/>
+                            <constraint firstItem="fGt-hw-Cj6" firstAttribute="top" secondItem="V7S-mh-emY" secondAttribute="bottom" constant="78" id="g0W-uZ-2Wb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V7S-mh-emY" secondAttribute="trailing" constant="22" id="wzF-mw-h2T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fGt-hw-Cj6" secondAttribute="bottom" id="ybz-DE-pzD"/>
                             <constraint firstItem="fGt-hw-Cj6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z6v-pK-tp0"/>
@@ -139,6 +118,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="VUz-Er-DoO"/>
                     <connections>
+                        <outlet property="btnRandom" destination="pEZ-sc-PeR" id="yaC-Hu-G7B"/>
                         <outlet property="btnSetTimer" destination="QbJ-iw-StW" id="ooR-kz-XSo"/>
                         <outlet property="collectionView" destination="fGt-hw-Cj6" id="WQW-UR-qO8"/>
                     </connections>
@@ -146,111 +126,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1925.5999999999999" y="25.123152709359609"/>
-        </scene>
-        <!--Set Timer-->
-        <scene sceneID="Lyi-eu-Pm9">
-            <objects>
-                <viewController storyboardIdentifier="Timer" id="2oi-J5-tS1" customClass="TimerViewController" customModule="Relieve_Test" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="csc-FE-Q66">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkS-4G-0Y0" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                <rect key="frame" x="22" y="173.33333333333334" width="331" height="90.000000000000028"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="NW8-7m-xrc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="20"/>
-                                <state key="normal">
-                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressOnCD:" destination="2oi-J5-tS1" eventType="touchUpInside" id="SQ9-o3-xkU"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dpZ-Gf-uLq">
-                                <rect key="frame" x="67" y="320.33333333333331" width="240" height="116"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qah-pw-Rhf" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Iey-bj-8ZL"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
-                                        <state key="normal" title="Start">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startButtonTapped:" destination="2oi-J5-tS1" eventType="touchUpInside" id="IcF-tn-m7M"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIm-a5-qYZ" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66" width="240" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="wa8-uk-9Cs"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="17"/>
-                                        <state key="normal" title="Pause">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pauseButtonTapped:" destination="2oi-J5-tS1" eventType="touchUpInside" id="9yc-kx-BUk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="zEl-8J-e95"/>
-                                </constraints>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8I-PO-t0t" customClass="RoundedButton" customModule="Relieve_Test" customModuleProvider="target">
-                                <rect key="frame" x="67" y="484.33333333333326" width="240" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="bXL-Oa-dNw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Rockwell-Bold" family="Rockwell" pointSize="25"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressOnHome:" destination="2oi-J5-tS1" eventType="touchUpInside" id="W0H-EM-TVR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toc-eT-qaK">
-                                <rect key="frame" x="146" y="103" width="82.333333333333314" height="39.333333333333343"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="toc-eT-qaK" firstAttribute="top" secondItem="jaj-zX-acA" secondAttribute="top" constant="59" id="D5P-dT-LxZ"/>
-                            <constraint firstItem="jaj-zX-acA" firstAttribute="trailing" secondItem="dpZ-Gf-uLq" secondAttribute="trailing" constant="68" id="HGz-2S-ug9"/>
-                            <constraint firstItem="n8I-PO-t0t" firstAttribute="leading" secondItem="jaj-zX-acA" secondAttribute="leading" constant="67" id="I4x-iG-ygD"/>
-                            <constraint firstItem="jaj-zX-acA" firstAttribute="trailing" secondItem="gkS-4G-0Y0" secondAttribute="trailing" constant="22" id="NOV-Yx-dvL"/>
-                            <constraint firstItem="gkS-4G-0Y0" firstAttribute="leading" secondItem="jaj-zX-acA" secondAttribute="leading" constant="22" id="NwG-QG-nyh"/>
-                            <constraint firstItem="gkS-4G-0Y0" firstAttribute="top" secondItem="toc-eT-qaK" secondAttribute="bottom" constant="31" id="PLd-c7-DMg"/>
-                            <constraint firstItem="dpZ-Gf-uLq" firstAttribute="leading" secondItem="jaj-zX-acA" secondAttribute="leading" constant="67" id="PfW-73-KJe"/>
-                            <constraint firstItem="dpZ-Gf-uLq" firstAttribute="top" secondItem="gkS-4G-0Y0" secondAttribute="bottom" constant="57" id="Xyg-an-y0y"/>
-                            <constraint firstItem="jaj-zX-acA" firstAttribute="trailing" secondItem="toc-eT-qaK" secondAttribute="trailing" constant="146.66999999999999" id="f4P-Zt-8Fx"/>
-                            <constraint firstItem="toc-eT-qaK" firstAttribute="leading" secondItem="jaj-zX-acA" secondAttribute="leading" constant="146" id="ihb-Rr-EI7"/>
-                            <constraint firstItem="jaj-zX-acA" firstAttribute="trailing" secondItem="n8I-PO-t0t" secondAttribute="trailing" constant="68" id="kV1-Zi-B0r"/>
-                            <constraint firstItem="n8I-PO-t0t" firstAttribute="top" secondItem="dpZ-Gf-uLq" secondAttribute="bottom" constant="48" id="oJf-5z-e7g"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="jaj-zX-acA"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Set Timer" id="TWX-14-Xyd"/>
-                    <connections>
-                        <outlet property="countDownButton" destination="gkS-4G-0Y0" id="AAf-By-hEx"/>
-                        <outlet property="homeButton" destination="n8I-PO-t0t" id="5Yb-cm-nvY"/>
-                        <outlet property="lblTimer" destination="toc-eT-qaK" id="gPu-Mj-d18"/>
-                        <outlet property="pauseButton" destination="fIm-a5-qYZ" id="db4-Ml-H3O"/>
-                        <outlet property="startButton" destination="qah-pw-Rhf" id="Est-MT-2aM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="814-nz-Bwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3898.4000000000001" y="25.123152709359609"/>
         </scene>
     </scenes>
     <resources>

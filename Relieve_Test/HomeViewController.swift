@@ -13,36 +13,46 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnSetTimer: RoundedButton!
-
+    @IBOutlet weak var btnRandom: RoundedButton!
     
     var fullView = UIView()
     var audioPlayerArray = [AVAudioPlayer]()
     var audioPlayer : AVAudioPlayer!
     var selectedArray = [String]()
     var selectedIndex = [Int]()
-    let items = [ "cafe", "fan", "fire", "forest",
-                  "night", "rain", "stream", "thunderstorm",
-                  "train", "waterdrop", "waves", "wind", ]
+    let items : [Int:String]! = [0:"cafe",1:"fan",2:"fire",3:"forest",
+                                4:"night",5:"rain",6: "stream",7:"thunderstorm",
+                                8:"train",9:"waterdrop",10:"waves",11:"wind"]
     var imageItems : [UIImage] = [
         UIImage(named: "cafe")!, UIImage(named: "fan")!, UIImage(named: "fire")!,
         UIImage(named: "forest")!, UIImage(named: "night")!, UIImage(named: "rain")!,
         UIImage(named: "stream")!, UIImage(named: "thunderstorm")!, UIImage(named: "train")!,
         UIImage(named: "waterdrop")!, UIImage(named: "waves")!, UIImage(named: "wind")!,
-    ]
+        ]
     var valueOfSlider : UILabel!
     var timerSlider : UISlider!
     var timer = Timer()
     var isRunning = false
+    var isPlaying : Bool!
     var countTimer : Int!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         collectionView.reloadData()
         collectionView.allowsMultipleSelection = true;
+        
         btnSetTimer.isEnabled = false
+        
+        //        let CreateDB: FavoriteViewController = FavoriteViewController();
+        //        CreateDB.createTable();
+        
         setGradient()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -56,18 +66,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let selectedItem : String = items[indexPath.row]
-        if  imageItems[indexPath.row] == UIImage(named: items[indexPath.row])! {
-            imageItems[indexPath.row] = UIImage(named: items[indexPath.row]+"_onclick")!
+        let selectedItem : String = items[indexPath.row]!
+        if  imageItems[indexPath.row] == UIImage(named: items[indexPath.row]!)! {
+            imageItems[indexPath.row] = UIImage(named: items[indexPath.row]!+"_onclick")!
             playSound(soundName: selectedItem)
-//            print("selected "+selectedItem)
-//            print(indexPath.row)
-            selectedArray.append(items[indexPath.row])
+            selectedArray.append(items[indexPath.row]!)
             selectedIndex.append(indexPath.row)
-//            print("select \(selectedIndex)")
-            
         } else {
-            imageItems[indexPath.row] = UIImage(named: items[indexPath.row])!
+            imageItems[indexPath.row] = UIImage(named: items[indexPath.row]!)!
             
             if let currentIndex = selectedArray.firstIndex(where: {$0 == items[indexPath.row]}) {
                 
@@ -75,13 +81,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 audioPlayerArray.remove(at: currentIndex)
                 selectedArray.remove(at: currentIndex)
                 selectedIndex.remove(at: currentIndex)
-//                print("deselect \(selectedIndex)")
             }
         }
         if selectedArray == [] {
             btnSetTimer.isEnabled = false
         } else {
             btnSetTimer.isEnabled = true
+            UIView.animate(withDuration: 1.0){
+                self.btnSetTimer.titleLabel?.transform = CGAffineTransform(scaleX: 5, y: 5)
+                //                self.btnSetTimer.titleLabel?.alpha = 0.2
+            }
+            UIView.animate(withDuration: 1.0){
+                self.btnSetTimer.titleLabel?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.btnSetTimer.titleLabel?.alpha = 1.0
+            }
         }
         
         
@@ -91,12 +104,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func playSound(soundName: String){
         
+        let session = AVAudioSession.sharedInstance()
+        try!  session.setCategory(AVAudioSession.Category.playAndRecord, mode: .default, policy: .default, options: .defaultToSpeaker)
+        
         do {
             if let soundURL = Bundle.main.path(forResource: soundName, ofType: "mp3") {
                 audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundURL))
                 audioPlayerArray.append(audioPlayer)
             } else {
-                print("No file with specified name exists")
+                let alert = UIAlertController(title: "", message: "can not find resource", preferredStyle: UIAlertController.Style.alert)
+                self.present(alert, animated: true)
             }
         } catch let error {
             print("Can't play the audio file failed with an error \(error.localizedDescription)")
@@ -104,8 +121,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         audioPlayer.numberOfLoops = -1
         audioPlayer.play()
-        
-        print(audioPlayerArray)
     }
     
     
@@ -158,22 +173,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             timerAlert.view.addSubview(valueOfSlider)
             valueOfSlider.text = "60"
         }
-//        let btnTimerDone = UIButton(frame: CGRect(x: 0, y: 110, width: 360, height: 50))
-//        btnTimerDone.layer.borderWidth = 1/UIScreen.main.nativeScale
-//        btnTimerDone.contentEdgeInsets = UIEdgeInsets(top: 3.5, left: 43, bottom: 3.5, right: 43)
-//        btnTimerDone.titleLabel?.adjustsFontSizeToFitWidth = true
-//        btnTimerDone.titleLabel?.adjustsFontForContentSizeCategory = true
-//        btnTimerDone.backgroundColor = .black
-//        btnTimerDone.layer.cornerRadius = 25
-//        btnTimerDone.layer.borderColor = UIColor(red: 237/255, green: 239/255, blue: 242/255, alpha: 1).cgColor
-//        btnTimerDone.setTitle("Set Timer", for: .normal)
-//        timerAlert.view.addSubview(btnTimerDone)
-        
-    }
-    @IBAction func pressOnFavorites(_ sender: Any) {
     }
     
+    
     @IBAction func pressOnRandom(_ sender: Any) {
+        stopAudioPlaying()
+        getImageBack()
+        let shuffleSounds = items.shuffled()
+        let get3Sounds = shuffleSounds[0...2]
+        for sound in get3Sounds {
+            playSound(soundName: sound.value)
+            imageItems[sound.key] = UIImage(named: items![sound.key]!+"_onclick")!
+        }
+        print(get3Sounds)
+        
     }
     
     @objc func sliderInAction(sender: UISlider){
@@ -193,13 +206,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 btnSetTimer.setTitle("Turn off sound after \(countTimer!) minutes", for: .normal)
             }
             
-//            let deadlineTime = DispatchTime.now() + .seconds(countTimer!)
-//            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-//                self.turnOff()
-//            }
+            //            let deadlineTime = DispatchTime.now() + .seconds(countTimer!)
+            //            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            //                self.turnOff()
+            //            }
             timerRunning()
-
-
+            
+            
         }
         print(valueOfSlider.text!)
         
@@ -208,7 +221,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func timerRunning(){
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         isRunning = true
     }
     
@@ -229,29 +242,46 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func turnOff(){
+        stopAudioPlaying()
+        getImageBack()
+        btnSetTimer.setTitle("Set Timer", for: .normal)
+    }
+    
+    func getImageBack(){
+        if selectedIndex != [] {
+            selectedIndex.forEach{ indexItem in
+                imageItems[indexItem] = UIImage(named: items[indexItem]!)!
+            }
+            selectedIndex.removeAll()
+            selectedArray.removeAll()
+        } else {
+            let indexs :[Int] = [0,1,2,3,4,5,6,7,8,9,10,11]
+            for index in indexs {
+                imageItems[index] = UIImage(named: items![index]!)!
+            }
+        }
+        
+        
+        
+        collectionView.reloadData()
+    }
+    
+    func stopAudioPlaying(){
         audioPlayerArray.forEach{ audioPlaying in
             audioPlaying.stop()
         }
-        
-        selectedIndex.forEach{ indexItem in
-            imageItems[indexItem] = UIImage(named: items[indexItem])!
-        }
-        selectedIndex.removeAll()
-        selectedArray.removeAll()
         audioPlayerArray.removeAll()
-        collectionView.reloadData()
-        btnSetTimer.setTitle("Set Timer", for: .normal)
     }
 }
 
 extension UIViewController {
     func setGradient(){
         let pastelView = PastelView(frame: view.bounds)
-
-//        // Custom Direction
-//        pastelView.startPastelPoint = .bottomRight
-//        pastelView.endPastelPoint = .topLeft
-//
+        
+        //        // Custom Direction
+        //        pastelView.startPastelPoint = .bottomRight
+        //        pastelView.endPastelPoint = .topLeft
+        //
         // Custom Duration
         pastelView.animationDuration = 20.0
         
@@ -260,7 +290,7 @@ extension UIViewController {
                               UIColor(red: 13/255, green: 178/255, blue: 128/255, alpha: 1.0),
                               UIColor(red: 117/255, green: 58/255, blue: 136/255, alpha: 1.0),
                               UIColor(red: 204/255, green: 43/255, blue: 94/255, alpha: 1.0)])
-
+        
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
     }
