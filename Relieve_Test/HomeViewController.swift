@@ -20,9 +20,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var audioPlayer : AVAudioPlayer!
     var selectedArray = [String]()
     var selectedIndex = [Int]()
+    var selectedRandomArray = [String]()
+    var selectedRandomIndex = [Int]()
     let items : [Int:String]! = [0:"cafe",1:"fan",2:"fire",3:"forest",
-                                4:"night",5:"rain",6: "stream",7:"thunderstorm",
-                                8:"train",9:"waterdrop",10:"waves",11:"wind"]
+                                 4:"night",5:"rain",6: "stream",7:"thunderstorm",
+                                 8:"train",9:"waterdrop",10:"waves",11:"wind"]
     var imageItems : [UIImage] = [
         UIImage(named: "cafe")!, UIImage(named: "fan")!, UIImage(named: "fire")!,
         UIImage(named: "forest")!, UIImage(named: "night")!, UIImage(named: "rain")!,
@@ -35,7 +37,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var isRunning = false
     var isPlaying : Bool!
     var countTimer : Int!
-    
+    let queue = DispatchQueue(label: "loading_sound")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.allowsMultipleSelection = true;
         
         btnSetTimer.isEnabled = false
-        
-        //        let CreateDB: FavoriteViewController = FavoriteViewController();
-        //        CreateDB.createTable();
         
         setGradient()
     }
@@ -69,7 +68,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let selectedItem : String = items[indexPath.row]!
         if  imageItems[indexPath.row] == UIImage(named: items[indexPath.row]!)! {
             imageItems[indexPath.row] = UIImage(named: items[indexPath.row]!+"_onclick")!
-            playSound(soundName: selectedItem)
+            queue.async {
+                self.playSound(soundName: selectedItem)
+            }
             selectedArray.append(items[indexPath.row]!)
             selectedIndex.append(indexPath.row)
         } else {
@@ -81,6 +82,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 audioPlayerArray.remove(at: currentIndex)
                 selectedArray.remove(at: currentIndex)
                 selectedIndex.remove(at: currentIndex)
+            }
+            if let randomIndex = selectedRandomArray.firstIndex(where: {$0 == items[indexPath.row]}){
+                audioPlayerArray[randomIndex].stop()
+                audioPlayerArray.remove(at: randomIndex)
+                selectedRandomArray.remove(at: randomIndex)
+                selectedRandomIndex.remove(at: randomIndex)
             }
         }
         if selectedArray == [] {
@@ -96,29 +103,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.btnSetTimer.titleLabel?.alpha = 1.0
             }
         }
-        
-        
         print(selectedArray)
         collectionView.reloadData()
     }
     
     func playSound(soundName: String){
-        
         let session = AVAudioSession.sharedInstance()
         try!  session.setCategory(AVAudioSession.Category.playAndRecord, mode: .default, policy: .default, options: .defaultToSpeaker)
-        
-        do {
-            if let soundURL = Bundle.main.path(forResource: soundName, ofType: "mp3") {
-                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundURL))
-                audioPlayerArray.append(audioPlayer)
-            } else {
-                let alert = UIAlertController(title: "", message: "can not find resource", preferredStyle: UIAlertController.Style.alert)
-                self.present(alert, animated: true)
+            do {
+                if let soundURL = Bundle.main.path(forResource: soundName, ofType: "mp3") {
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundURL))
+                    self.audioPlayerArray.append(self.audioPlayer)
+                } else {
+                    let alert = UIAlertController(title: "", message: "can not find resource", preferredStyle: UIAlertController.Style.alert)
+                    self.present(alert, animated: true)
+                }
+            } catch let error {
+                print("Can't play the audio file failed with an error \(error.localizedDescription)")
             }
-        } catch let error {
-            print("Can't play the audio file failed with an error \(error.localizedDescription)")
-        }
-        
         audioPlayer.numberOfLoops = -1
         audioPlayer.play()
     }
@@ -176,18 +178,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     
-    @IBAction func pressOnRandom(_ sender: Any) {
-        stopAudioPlaying()
-        getImageBack()
-        let shuffleSounds = items.shuffled()
-        let get3Sounds = shuffleSounds[0...2]
-        for sound in get3Sounds {
-            playSound(soundName: sound.value)
-            imageItems[sound.key] = UIImage(named: items![sound.key]!+"_onclick")!
-        }
-        print(get3Sounds)
-        
-    }
+    
     
     @objc func sliderInAction(sender: UISlider){
         valueOfSlider.text = String(Int(sender.value))
@@ -247,6 +238,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         btnSetTimer.setTitle("Set Timer", for: .normal)
     }
     
+    @IBAction func pressOnRandom(_ sender: Any) {
+        stopAudioPlaying()
+        getImageBack()
+        queue.async {
+            let shuffleSounds = self.items.shuffled()
+            let get3Sounds = shuffleSounds[0...2]
+            for sound in get3Sounds {
+                self.playSound(soundName: sound.value)
+                self.imageItems[sound.key] = UIImage(named: self.items![sound.key]!+"_onclick")!
+                self.selectedRandomArray.append(sound.value)
+                self.selectedRandomIndex.append(sound.key)
+            }
+        }
+    }
+    
     func getImageBack(){
         if selectedIndex != [] {
             selectedIndex.forEach{ indexItem in
@@ -278,10 +284,6 @@ extension UIViewController {
     func setGradient(){
         let pastelView = PastelView(frame: view.bounds)
         
-        //        // Custom Direction
-        //        pastelView.startPastelPoint = .bottomRight
-        //        pastelView.endPastelPoint = .topLeft
-        //
         // Custom Duration
         pastelView.animationDuration = 20.0
         
